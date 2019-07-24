@@ -35,7 +35,7 @@ srilm_opts="-subset -prune-lowprobs -unk -tolower -order 3"
 # in data/local/dict_combined
 if [ $stage -eq 1 ]; then
   # We prepare the basic dictionary in data/local/dict_combined.
-  local/prepare_dict.sh $swbd $tedlium2
+  local/prepare_dict.sh $swbd $nptel
   (
    steps/dict/train_g2p_phonetisaurus.sh --stage 0 --silence-phones \
      "data/local/dict_combined/silence_phones.txt" data/local/dict_combined/lexicon.txt exp/g2p || touch exp/g2p/.error
@@ -57,7 +57,7 @@ if [ $stage -eq 2 ]; then
   local/librispeech_data_prep.sh $librispeech/LibriSpeech/train-other-500 data/librispeech_500/train
   local/librispeech_data_prep.sh $librispeech/LibriSpeech/test-clean data/librispeech/test
   # tedlium
-  local/tedlium_prepare_data.sh $tedlium2
+  local/tedlium_prepare_data.sh $nptel
 
 
   #AMI 
@@ -147,7 +147,7 @@ fi
 # make training features
 if [ $stage -eq 7 ]; then
   mfccdir=mfcc
-  corpora="ami_ihm fisher librispeech_100 librispeech_360 librispeech_500 swbd tedlium"
+  corpora="ami_ihm fisher librispeech_100 librispeech_360 librispeech_500 swbd nptel"
   for c in $corpora; do
     (
      data=data/$c/train
@@ -183,7 +183,7 @@ fi
 # make test features
 if [ $stage -eq 9 ]; then
   mfccdir=mfcc
-  corpora="tedlium librispeech"
+  corpora="nptel librispeech"
   for c in $corpora; do
     data=data/$c/test
     steps/make_mfcc.sh --mfcc-config conf/mfcc.conf \
@@ -309,14 +309,9 @@ if [ $stage -eq 16 ]; then
   )&
 fi
 
-lang=${lang_root}_${dict_affix}
-if [ $stage -eq 17 ]; then
-  # This does the actual data cleanup.
-  steps/cleanup/clean_and_segment_data.sh --stage $cleanup_stage --nj 100 --cmd "$train_cmd" \
-  data/tedlium/train $lang exp/$multi/tri3b exp/$multi/tri3b_tedlium_cleaning_work data/$multi/tedlium_cleaned/train
-fi
 
-# train tri4 on fisher + swbd + tedlium (nodup)
+
+# train tri4 on fisher + swbd + nptel (nodup)
 if [ $stage -eq 18 ]; then
   local/make_partitions.sh --multi $multi --stage 6 || exit 1;
   steps/align_fmllr.sh --cmd "$train_cmd" --nj 100 \
@@ -337,7 +332,7 @@ if [ $stage -eq 18 ]; then
 fi
 
 #DID NOT ATTEMPT LACK OF DATASET
-# train tri5a on fisher + swbd + tedlium + wsj + hub4_en (nodup)
+# train tri5a on fisher + swbd + nptel + wsj + hub4_en (nodup)
 if [ $stage -eq 19 ]; then
   local/make_partitions.sh --multi $multi --stage 7 || exit 1;
   steps/align_fmllr.sh --cmd "$train_cmd" --nj 100 \
@@ -383,7 +378,7 @@ if [ $stage -eq 20 ]; then
 fi
 
 lang=${lang_root}_${dict_affix}
-# train tri5b on fisher + swbd + tedlium + wsj + hub4_en + librispeeh460 (nodup)
+# train tri5b on fisher + swbd + nptel + wsj + hub4_en + librispeeh460 (nodup)
 if [ $stage -eq 21 ]; then
   local/make_partitions.sh --multi $multi --stage 8 || exit 1;
   steps/align_fmllr.sh --cmd "$train_cmd" --nj 100 \
@@ -403,7 +398,7 @@ if [ $stage -eq 21 ]; then
   )&
 fi
 
-# train tri6a on fisher + swbd + tedlium + wsj + hub4_en + librispeeh960 (nodup)
+# train tri6a on fisher + swbd + nptel + wsj + hub4_en + librispeeh960 (nodup)
 if [ $stage -eq 22 ]; then
   local/make_partitions.sh --multi $multi --stage 9 || exit 1;
   steps/align_fmllr.sh --cmd "$train_cmd" --nj 100 \
