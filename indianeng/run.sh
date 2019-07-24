@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# Copyright 2016  Allen Guo
-#           2017  Xiaohui Zhang
-# Apache 2.0
+
 
 . ./cmd.sh
 . ./path.sh
 
-# paths to corpora (see below for example)
 ami=/home/nijil/kaldi/egs/multi_en/s5/vault/ami
 fisher=/home/nijil/kaldi/egs/multi_en/s5/vault/fisher
 librispeech=/home/nijil/kaldi/egs/multi_en/s5/vault
@@ -16,16 +13,11 @@ nptel=/home/nijil/kaldi/egs/multi_en/s5/vault/nptel
 
 
 set -e
-# check for kaldi_lm
-#which get_word_map.pl > /dev/null
-#if [ $? -ne 0 ]; then
-#  echo "This recipe requires installation of tools/kaldi_lm. Please run extras/kaldi_lm.sh in tools/" && exit 1;
-#fi
 
 # general options
 stage=$1
 cleanup_stage=1
-multi=multi_a  # This defines the "variant" we're using; see README.md
+multi=multi_a
 srilm_opts="-subset -prune-lowprobs -unk -tolower -order 3"
 
 . utils/parse_options.sh
@@ -56,7 +48,7 @@ if [ $stage -eq 2 ]; then
   local/librispeech_data_prep.sh $librispeech/LibriSpeech/train-clean-360 data/librispeech_360/train
   local/librispeech_data_prep.sh $librispeech/LibriSpeech/train-other-500 data/librispeech_500/train
   local/librispeech_data_prep.sh $librispeech/LibriSpeech/test-clean data/librispeech/test
-  # tedlium
+  # nptel
   local/tedlium_prepare_data.sh $nptel
 
 
