@@ -1,0 +1,24 @@
+# compute-mfcc-feats --verbose=2 --config=conf/mfcc.conf scp,p:exp_FG/make_mfcc/test/wav_test.6.scp ark:- | copy-feats --compress=true ark:- ark,scp:/home/shaheen/Desktop/kaldi/egs/hindi/Kaldi/mfcc/raw_mfcc_test.6.ark,/home/shaheen/Desktop/kaldi/egs/hindi/Kaldi/mfcc/raw_mfcc_test.6.scp 
+# Started at Sun Aug 25 14:31:37 IST 2019
+#
+copy-feats --compress=true ark:- ark,scp:/home/shaheen/Desktop/kaldi/egs/hindi/Kaldi/mfcc/raw_mfcc_test.6.ark,/home/shaheen/Desktop/kaldi/egs/hindi/Kaldi/mfcc/raw_mfcc_test.6.scp 
+compute-mfcc-feats --verbose=2 --config=conf/mfcc.conf scp,p:exp_FG/make_mfcc/test/wav_test.6.scp ark:- 
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0071
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0072
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0073
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0074
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0075
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0076
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0077
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0078
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0079
+LOG (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:181) Processed 10 utterances
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2504M0080
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2505M0081
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2505M0082
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2505M0083
+VLOG[2] (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:182) Processed features for key hi2505M0084
+LOG (compute-mfcc-feats[5.5.453~1-6cdc49]:main():compute-mfcc-feats.cc:185)  Done 14 out of 14 utterances.
+LOG (copy-feats[5.5.453~1-6cdc49]:main():copy-feats.cc:143) Copied 14 feature matrices.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Sun Aug 25 14:31:37 IST 2019, elapsed time 0 seconds
