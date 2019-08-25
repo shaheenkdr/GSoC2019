@@ -3,5 +3,5 @@ Public Repo of Google Summer of Code 2019 under Red Hen Labs. Contains source co
 
 The Documentation for Indian English ASR is provided here : [https://shaheenkdr.github.io/indian-english](https://shaheenkdr.github.io/indian-english)
 
-The Documentation for Hindi ASR is provided here : [https://shaheenkdr.github.io/indian-english](https://shaheenkdr.github.io/hindi)
+The Documentation for Hindi ASR is provided here : [https://shaheenkdr.github.io/hindi](https://shaheenkdr.github.io/hindi)
 
